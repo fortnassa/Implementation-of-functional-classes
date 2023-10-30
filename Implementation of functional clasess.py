@@ -10,14 +10,14 @@ class Student:
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)
 
-        def rate_hw(self, lecturer, course, grade):
-            if isinstance(lecturer, Lecturer) and course in self.courses_attached and course in student.course_in_progress:
-                if grade in student.grades:
-                    student.grades[course] += [grade]
-                else:
-                    student.grades[course] = [grade]
+    def rate_for_course(self, lecturer, course, grade):
+        if isinstance(lecturer, Lecturer) and course in self.courses_attached and course in lecturer.grades:
+            if grade in lecturer.grades:
+                lecturer.grades[course] += [grade] #реализация закрепленного кура за Лекторами, для того что бы осуществить проверку оценок
             else:
-                return "Ошибка"
+                lecturer.grades[course] = [grade]
+        else:
+            return "Ошибка"
 
 class Mentor:
     def __init__(self, name, surname):
@@ -30,7 +30,12 @@ class Mentor:
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
+        self.courses_attached = []
         self.grades = {"Введение в программирование": 9, "Git": 10, "Python": 8}
+
+    def add_course_in_progress(self, course_name):
+        # if Lecturer in self.courses_in_progress:
+        self.courses_attached.append(course_name)
 
 class Reviewer(Mentor):
     def __init__(self, name, surname, courses_attached):
