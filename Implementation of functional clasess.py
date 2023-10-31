@@ -36,10 +36,24 @@ class Lecturer(Mentor):
         self.courses_attached = []
         self.grades = {}
 
+    def add_grade(self, course, grade):
+        if course not in self.grades:
+            self.grades[course] = []
+        self.grades[course].append(grade)
+
+
     def avarage_rating(self, grades):
         #нужно пройтись по списку используя for или list comprehension
-        for values in grades.values():
-            
+        total_rating = 0
+        total_count = 0
+        
+        for grades in self.grades.values():
+            total_rating += sum(grades)
+            total_count += len(grades)
+        if total_rating == 0:
+            return 0.0
+        else:
+            return total_rating/total_count
 
     def __str__(self):
         return f'Имя: {self.name}\n Фамилия: {self.surname}\n Средняя оценка за лекции: {self.courses_attached}'
