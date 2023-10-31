@@ -19,6 +19,9 @@ class Student:
         else:
             return "Ошибка"
 
+    def __str__(self):
+        f'Имя: {self.name}\n Фамилия: {self.surname}\n Средняя оценка за домшнее задание: {self.grades}\n Курсы в процессе изучения: {self.courses_in_progress}\n Завершенные курсы: {self.finished_courses}'
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -34,12 +37,12 @@ class Lecturer(Mentor):
         self.grades = {}
 
     def avarage_rating(self, grades):
-        #формула для подчсета среднего значения, которая принимает значения из словаря grades для класса лекторов.
-        self.values = grades.values
-        self.total = sum(values)
-        self.count = len(grades)
-        self.avg = self.total / self.count
-        return self.avg
+        #нужно пройтись по списку используя for или list comprehension
+        for values in grades.values():
+            
+
+    def __str__(self):
+        return f'Имя: {self.name}\n Фамилия: {self.surname}\n Средняя оценка за лекции: {self.courses_attached}'
 
 
 
