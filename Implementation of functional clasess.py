@@ -31,11 +31,17 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.courses_attached = []
-        self.grades = {"Введение в программирование": 9, "Git": 10, "Python": 8}
+        self.grades = {}
 
-    def add_course_in_progress(self, course_name):
-        # if Lecturer in self.courses_in_progress:
-        self.courses_attached.append(course_name)
+    def avarage_rating(self, grades):
+        #формула для подчсета среднего значения, которая принимает значения из словаря grades для класса лекторов.
+        self.values = grades.values
+        self.total = sum(values)
+        self.count = len(grades)
+        self.avg = self.total / self.count
+        return self.avg
+
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname, courses_attached):
@@ -49,6 +55,8 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return "Ошибка"
+    def __str__(self):
+        return f'Имя: {self.name}\n Фамилия: {self.surname}'
 
 
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
